@@ -1,9 +1,11 @@
 // modules 
 var express = require('express');
 var app = express();
-//var routes = require('./routes');
+var path = require('path');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+
+var dogs = require('./routes/test.routes.js')
 
 // configuration ===========================================
 
@@ -23,10 +25,17 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(__dirname + '/public')); 
 
 // routes 
-//app.use('/', routes);
-
+app.use('/dogs', dogs);
+app.get('/api/test', (req, res) => {
+	var items = {
+		count: 5,
+		state: "solid",
+		upc: 487983479875
+	};
+	res.json(items);
+});
 app.get('*', (req, res) => {
-    res.sendfile('./views/index.html');  
+    res.sendFile(path.join(__dirname, './views', 'index.html'));
 });
 
 // start app ===============================================
