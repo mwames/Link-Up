@@ -5,7 +5,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-var dogs = require('./routes/test.routes.js')
+var dogs = require('./api/routes/test.routes.js')
 
 // configuration ===========================================
 
